@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -96,7 +97,10 @@ class MainActivity : ComponentActivity() {
 
 
                             OutlinedTextField(
-                                isError = true,
+                                modifier = Modifier.fillMaxWidth().padding(
+                                    horizontal = 16.dp
+                                ),
+
                                 leadingIcon = {
                                     Icon(
                                         imageVector = Icons.Rounded.Email,
@@ -114,28 +118,7 @@ class MainActivity : ComponentActivity() {
 
 
 
-                            PrimaryButton(
-                                onClick = {
-                                    enabled = true
-                                }
-                            ) {
-                                Text(
-                                    text = "Show Dialog"
-                                )
-                            }
 
-
-                            Spacer(
-                                modifier = Modifier.height(12.dp)
-                            )
-
-                            OutlinedButton(
-                                onClick = {}
-                            ) {
-                                Text(
-                                    text = "Outlinesd"
-                                )
-                            }
 
 
 //

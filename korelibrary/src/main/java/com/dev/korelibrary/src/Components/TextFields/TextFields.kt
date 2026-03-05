@@ -75,7 +75,7 @@ internal fun BaseTextField(
                 modifier = modifier
                     .defaultMinSize(
                         minHeight = TextFieldDefaults.minimumTextFieldHeight,
-                        minWidth = 300.dp
+                        minWidth = TextFieldDefaults.minimumTextFieldWidth
                     )
                     .background(
                         shape = shape,
@@ -135,6 +135,8 @@ internal fun BaseTextField(
                     }, value = value, onValueChange = {
                         onValueChange.invoke(it)
                     })
+
+
             }
     }
 

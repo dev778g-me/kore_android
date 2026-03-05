@@ -72,7 +72,7 @@ object TextFieldDefaults {
 
     val minimumTextFieldHeight = 56.dp
 
-    val minimumTextFieldWidth = 200.dp
+    val minimumTextFieldWidth = 300.dp
 
     val maxLeadingIconHeight = 42.dp
 
