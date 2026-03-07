@@ -11,20 +11,22 @@ import io.jadu.nivi.presentation.utils.squircleShape.SquircleShape
 object KoreDefaults{
     val defaultLightColorScheme = KoreColors(
         // background and background variant
-        background = TailwindColors.Neutral50,
-        onBackGround = TailwindColors.Neutral900,
-        backGroundVariant = TailwindColors.Neutral300,
-        onBackGroundVariant = TailwindColors.Neutral800,
+        background = RadixColors.Gray.Light.step1,
+        onBackGround = RadixColors.Black.blackA12,
+
+        backGroundVariant = RadixColors.Gray.Light.step4,
+        onBackGroundVariant = RadixColors.Gray.Light.step11,
 
         // disabled colors
-        disabled = TailwindColors.Neutral200,
-        onDisabled = TailwindColors.Neutral400,
+        disabled = RadixColors.Gray.Light.step3,
+        onDisabled = RadixColors.Gray.Light.step8,
 
         // primary colors
-        primary = TailwindColors.Blue500,
-        onPrimary = TailwindColors.Blue50,
-        primaryContainer = TailwindColors.Blue100,
-        onPrimaryContainer = TailwindColors.Blue500,
+        primary = RadixColors.Blue.Light.step9,
+        onPrimary = RadixColors.Blue.Light.step3,
+
+        primaryContainer = RadixColors.Blue.Light.step5,
+        onPrimaryContainer = RadixColors.Blue.Light.step10,
 
         secondary = TailwindColors.Sky500,
         onSecondary = TailwindColors.Sky100,
@@ -34,32 +36,34 @@ object KoreDefaults{
 
 
         // success colors
-        success = TailwindColors.Green500,
-        onSuccess = TailwindColors.Green100,
+        success = RadixColors.Green.Light.step9,
+        onSuccess = RadixColors.Green.Light.step3,
 
         // error colors
-        error = TailwindColors.Red600,
-        onError = TailwindColors.Red50,
+        error = RadixColors.Red.Light.step9,
+        onError = RadixColors.Red.Light.step3,
         transParentColor = Color.Transparent
     )
 
 
     val defaultDarkColorScheme = KoreColors(
         // background and background variant
-        background = TailwindColors.Neutral950,
-        onBackGround = TailwindColors.Blue50,
-        backGroundVariant = TailwindColors.Neutral800,
-        onBackGroundVariant = TailwindColors.Neutral200,
+        background = RadixColors.Gray.Dark.step1,
+        onBackGround = RadixColors.White.whiteA12,
+
+        backGroundVariant = RadixColors.Gray.Dark.step4,
+        onBackGroundVariant = RadixColors.Gray.Dark.step11,
 
         // disabled colors
-        disabled = TailwindColors.Neutral900,
-        onDisabled = TailwindColors.Neutral700,
+        disabled = RadixColors.Gray.Dark.step3,
+        onDisabled = RadixColors.Gray.Dark.step8,
 
         // primary colors
-        primary = TailwindColors.Blue600,
-        onPrimary = TailwindColors.Blue100,
-        primaryContainer = TailwindColors.Blue200,
-        onPrimaryContainer = TailwindColors.Blue900,
+        primary = RadixColors.Blue.Dark.step9,
+        onPrimary = RadixColors.Blue.Dark.step12,
+
+        primaryContainer = RadixColors.Blue.Dark.step3,
+        onPrimaryContainer = RadixColors.Blue.Dark.step10,
 
         secondary = TailwindColors.Sky600,
         onSecondary = TailwindColors.Sky900,
@@ -69,12 +73,12 @@ object KoreDefaults{
 
 
         // success colors
-        success = TailwindColors.Green700,
-        onSuccess = TailwindColors.Green200,
+        success = RadixColors.Green.Dark.step9,
+        onSuccess = RadixColors.Green.Dark.step12,
 
         // error colors
-        error = TailwindColors.Red500,
-        onError = TailwindColors.Red100,
+        error = RadixColors.Red.Dark.step9,
+        onError = RadixColors.Red.Dark.step12,
         transParentColor = Color.Transparent
     )
 

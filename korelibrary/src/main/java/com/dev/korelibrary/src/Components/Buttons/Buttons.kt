@@ -248,8 +248,8 @@ object ButtonDefaults{
 
     @Composable
     fun secondaryButtonColors (
-        containerColor: Color = KoreTheme.colorScheme.backGroundVariant,
-        contentColor : Color = KoreTheme.colorScheme.onBackGroundVariant,
+        containerColor: Color = KoreTheme.colorScheme.primaryContainer,
+        contentColor : Color = KoreTheme.colorScheme.onPrimaryContainer,
         disabledButtonContainerColor: Color = KoreTheme.colorScheme.disabled,
         disabledButtonContentColor: Color = KoreTheme.colorScheme.onDisabled
     ) = ButtonColors(

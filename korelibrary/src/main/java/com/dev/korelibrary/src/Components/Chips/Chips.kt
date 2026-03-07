@@ -22,6 +22,8 @@ import com.dev.korelibrary.src.Components.Chips.ChipDefaults.contentColor
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
 import com.dev.korelibrary.src.Components.Themes.LocalContentColor
 import com.dev.korelibrary.src.Components.Themes.LocalTextStyle
+import io.jadu.nivi.presentation.utils.squircleShape.CornerSmoothing
+import io.jadu.nivi.presentation.utils.squircleShape.SquircleShape
 
 
 @Composable
@@ -349,12 +351,10 @@ object ChipDefaults {
     )
 
    // the default size for the chip
-    val defaultChipShape = RoundedCornerShape(16.dp)
+    val defaultChipShape = SquircleShape(90.dp, cornerSmoothing = CornerSmoothing.Small)
 
 
-    val leadingIconSize = 18.dp
 
-    val trailingIconSize  = 18.dp
 
     val horizontalContentPadding = PaddingValues(
         horizontal = 4.dp
