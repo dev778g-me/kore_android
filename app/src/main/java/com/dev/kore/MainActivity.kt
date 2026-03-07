@@ -36,6 +36,7 @@ import com.dev.korelibrary.src.Components.Buttons.PrimaryButton
 import com.dev.korelibrary.src.Components.Chips.ErrorChip
 import com.dev.korelibrary.src.Components.Chips.SuccessChip
 import com.dev.korelibrary.src.Components.Dialogs.AlertDialog
+import com.dev.korelibrary.src.Components.Radio.RadioButton
 import com.dev.korelibrary.src.Components.Scaffold.Scaffold
 import com.dev.korelibrary.src.Components.Switchs.Switch
 import com.dev.korelibrary.src.Components.Text
@@ -151,9 +152,10 @@ private fun KoreExample() {
 
 
                 Row(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(
-                            horizontal = 26.dp
+                           horizontal = 0.dp
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -163,13 +165,14 @@ private fun KoreExample() {
                     Spacer(
                         modifier = Modifier.weight(1f)
                     )
-                    Switch(
-                        enabled = enabled,
-                        checked = enabledSw,
-                        onCheckChange = {
-                            enabledSw = it
-                        }
-                    )}
+                    RadioButton(
+                        selected = enabledSw,
+                        onClick = {
+                            enabledSw = !enabledSw
+                        },
+                        enabled = enabled
+                    )
+                }
 //
 
 
