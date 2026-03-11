@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
 import com.dev.korelibrary.src.Components.Themes.LocalContentColor
@@ -31,29 +33,33 @@ internal fun BaseIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean,
+    shape : Shape,
     border: BorderStroke ? = null,
     iconButtonColors: IconButtonColors,
     content: @Composable () -> Unit,
 
 ) {
     CompositionLocalProvider(
-       value =  LocalContentColor provides if (enabled) iconButtonColors.iconButtonContentColor else null  // Only override if enabled
-            ?: LocalContentColor.current
+        value = LocalContentColor provides if (enabled) iconButtonColors.iconButtonContentColor else
+            LocalContentColor.current
     ) {
         Box(
             modifier = modifier
-                .clip(CircleShape)
+                .defaultMinSize(
+                    minWidth = IconButtonDefaults.defaultIconButtonWidth,
+                    minHeight = IconButtonDefaults.defaultIconButtonHeight
+                )
+                .clip(shape)
                 .background(
-                    shape = CircleShape,
+                    shape = shape,
                     color = if (enabled) iconButtonColors.iconButtonContainerColor else iconButtonColors.disabledIconButtonColor
                 )
                 .then(
                     if (border != null) Modifier.border(
                         border = border,
-                        shape = CircleShape
+                        shape = shape
                     ) else Modifier
                 )
-
                 .clickable(
                     enabled = enabled,
                     onClick = {
@@ -76,6 +82,7 @@ fun PrimaryIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    shape: Shape = CircleShape,
     primaryIconButtonColors: IconButtonColors = IconButtonDefaults.primaryIconButtonColors(),
     content: @Composable () -> Unit,
 ) {
@@ -83,6 +90,7 @@ fun PrimaryIconButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        shape = shape,
         iconButtonColors = primaryIconButtonColors,
         content = content
     )
@@ -94,6 +102,7 @@ fun SecondaryIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    shape: Shape = CircleShape,
     secondaryIconButtonColors: IconButtonColors = IconButtonDefaults.secondaryIconButtonColors(),
     content: @Composable () -> Unit,
 ) {
@@ -101,6 +110,7 @@ fun SecondaryIconButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        shape = CircleShape,
         iconButtonColors =  secondaryIconButtonColors,
         content = content
     )
@@ -112,6 +122,7 @@ fun OutlinedIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    shape: Shape = CircleShape,
     outlinedIconButtonColors: IconButtonColors = IconButtonDefaults.outlinedIconButtonColors(),
     content: @Composable () -> Unit,
 ) {
@@ -120,6 +131,7 @@ fun OutlinedIconButton(
         modifier = modifier,
         enabled = enabled,
         iconButtonColors = IconButtonDefaults.outlinedIconButtonColors(),
+        shape = shape,
         border =  BorderStroke(width = 1.dp, color =if (enabled) outlinedIconButtonColors.iconButtonContentColor else outlinedIconButtonColors.disabledIconContentColor),
         content = content
     )
@@ -130,6 +142,7 @@ fun OutlinedIconButton(
 fun GhostIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    shape: Shape = CircleShape,
     enabled: Boolean = true,
     content: @Composable () -> Unit,
 ) {
@@ -137,6 +150,7 @@ fun GhostIconButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        shape = shape,
         iconButtonColors = IconButtonDefaults.ghostIconButton(),
         content = content
     )
@@ -151,6 +165,11 @@ fun GhostIconButton(
 
 
 object IconButtonDefaults{
+
+
+    val defaultIconButtonWidth = 40.dp
+
+    val defaultIconButtonHeight = 40.dp
 
     @Composable
     fun primaryIconButtonColors(
@@ -169,8 +188,8 @@ object IconButtonDefaults{
 
     @Composable
     fun secondaryIconButtonColors(
-        iconButtonContainerColor: Color = KoreTheme.colorScheme.backGroundVariant,
-        iconButtonContentColor: Color = KoreTheme.colorScheme.onBackGroundVariant,
+        iconButtonContainerColor: Color = KoreTheme.colorScheme.primaryContainer,
+        iconButtonContentColor: Color = KoreTheme.colorScheme.onPrimaryContainer,
         disabledIconButtonColor: Color = KoreTheme.colorScheme.disabled,
         disabledIconContentColor: Color = KoreTheme.colorScheme.onDisabled
     ) = IconButtonColors(

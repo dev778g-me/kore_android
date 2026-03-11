@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation("io.github.dev778g-me:phosphoricon-compose:1.0.2")
     implementation ("androidx.compose.material:material-icons-extended:1.7.8")
     implementation(project(":korelibrary"))
     implementation(libs.androidx.core.ktx)

@@ -23,7 +23,7 @@ enum class IconButtonSizes{
 @Composable
 fun Icon(
     imageVector: ImageVector,
-    contentDescription: String,
+    contentDescription: String?,
     tint: Color  = LocalContentColor.current,
     @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {

@@ -2,32 +2,23 @@ package com.dev.korelibrary.src.Components.Radio
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.disableHotReloadMode
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import com.dev.korelibrary.src.Components.Radio.RadioButtonDefaults.borderColor
 import com.dev.korelibrary.src.Components.Radio.RadioButtonDefaults.radioColor
-import com.dev.korelibrary.src.Components.Switchs.SwitchDefaults
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
-import com.dev.korelibrary.src.Components.Themes.Ripple.koreRipple
 
 @Composable
 fun RadioButton(
@@ -46,6 +37,11 @@ fun RadioButton(
     )
 
     val dotColor = colors.radioColor(
+        enabled = enabled,
+        selected = selected
+    )
+
+    val borderColor = colors.borderColor(
         enabled = enabled,
         selected = selected
     )
@@ -73,7 +69,7 @@ fun RadioButton(
         val strokeWidth = 2.dp.toPx()
 
         drawCircle(
-            color = dotColor,
+            color = borderColor,
             style = Stroke(strokeWidth)
         )
 
@@ -116,12 +112,20 @@ object RadioButtonDefaults{
         disabledUnSelectedColor = disabledUnSelectedColor
     )
 
+    fun RadioButtonColors.borderColor(
+        enabled: Boolean,
+        selected: Boolean
+    ) : Color{
+        return if (enabled) if (selected) this.selectedColor else this.unSelectedColor
+        else this.disabledUnSelectedColor
+    }
+
     fun RadioButtonColors.radioColor(
         enabled: Boolean,
         selected: Boolean
     ): Color{
        return if (enabled) if (selected) this.selectedColor else this.unSelectedColor
-        else if (selected) this.disabledSelectedColor else this.disabledUnSelectedColor
+        else this.disabledUnSelectedColor
     }
 
     val defaultRadioDotSize = 12.dp

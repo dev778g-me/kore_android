@@ -16,14 +16,14 @@ object KoreDefaults{
 
         backGroundVariant = RadixColors.Gray.Light.step4,
         onBackGroundVariant = RadixColors.Gray.Light.step11,
-
+        accent = RadixColors.Blue.Light.step4,
         // disabled colors
         disabled = RadixColors.Gray.Light.step3,
         onDisabled = RadixColors.Gray.Light.step8,
 
         // primary colors
         primary = RadixColors.Blue.Light.step9,
-        onPrimary = RadixColors.Blue.Light.step3,
+        onPrimary = RadixColors.Blue.Light.step2,
 
         primaryContainer = RadixColors.Blue.Light.step5,
         onPrimaryContainer = RadixColors.Blue.Light.step10,
@@ -53,7 +53,7 @@ object KoreDefaults{
 
         backGroundVariant = RadixColors.Gray.Dark.step4,
         onBackGroundVariant = RadixColors.Gray.Dark.step11,
-
+        accent = RadixColors.Blue.Dark.step1,
         // disabled colors
         disabled = RadixColors.Gray.Dark.step3,
         onDisabled = RadixColors.Gray.Dark.step8,
@@ -90,113 +90,113 @@ object KoreDefaults{
             fontWeight = FontWeight.Normal,
             fontSize = 57.sp,
             lineHeight = 64.sp,
-            letterSpacing = 0.sp
+            letterSpacing = (-0.25).sp   // M3: -0.25sp
         ),
         displayMedium = TextStyle(
             fontFamily = googleSansFlex,
             fontWeight = FontWeight.Normal,
             fontSize = 45.sp,
             lineHeight = 52.sp,
-            letterSpacing = 0.sp
+            letterSpacing = 0.sp          // M3: 0sp ✓
         ),
         displaySmall = TextStyle(
             fontFamily = googleSansFlex,
             fontWeight = FontWeight.Normal,
             fontSize = 36.sp,
             lineHeight = 44.sp,
-            letterSpacing = 0.sp
+            letterSpacing = 0.sp          // M3: 0sp ✓
         ),
 
         // Headline styles
         headingLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Normal,   // M3: Normal (not Bold)
             fontSize = 32.sp,
             lineHeight = 40.sp,
-            letterSpacing = 0.sp
+            letterSpacing = 0.sp              // M3: 0sp ✓
         ),
         headingMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Normal,   // M3: Normal (not Bold)
             fontSize = 28.sp,
             lineHeight = 36.sp,
-            letterSpacing = 0.sp
+            letterSpacing = 0.sp              // M3: 0sp ✓
         ),
         headingSmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Normal,   // M3: Normal (not Medium)
             fontSize = 24.sp,
             lineHeight = 32.sp,
-            letterSpacing = 0.sp
+            letterSpacing = 0.sp              // M3: 0sp ✓
         ),
 
         // Title styles
         titleLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Normal,   // M3: Normal ✓
             fontSize = 22.sp,
             lineHeight = 28.sp,
-            letterSpacing = 0.sp
+            letterSpacing = 0.sp              // M3: 0sp ✓
         ),
         titleMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,   // M3: Medium (not Normal)
             fontSize = 16.sp,
             lineHeight = 24.sp,
-            letterSpacing = 0.15.sp
+            letterSpacing = 0.15.sp           // M3: 0.15sp ✓
         ),
         titleSmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Medium,   // M3: Medium ✓
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.1.sp
+            letterSpacing = 0.1.sp            // M3: 0.1sp ✓
         ),
 
-        // Body styles (for large text blocks)
+        // Body styles
         bodyLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Normal,   // M3: Normal ✓
             fontSize = 16.sp,
             lineHeight = 24.sp,
-            letterSpacing = 0.15.sp
+            letterSpacing = 0.5.sp            // M3: 0.5sp (not 0.15sp)
         ),
         bodyMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Normal,   // M3: Normal ✓
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.25.sp
+            letterSpacing = 0.25.sp           // M3: 0.25sp ✓
         ),
         bodySmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Normal,   // M3: Normal ✓
             fontSize = 12.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.4.sp
+            letterSpacing = 0.4.sp            // M3: 0.4sp ✓
         ),
 
-        // Label styles (buttons, chips, etc.)
+        // Label styles
         labelLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,   // M3: Medium (not SemiBold)
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.1.sp
+            letterSpacing = 0.1.sp            // M3: 0.1sp ✓
         ),
         labelMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,   // M3: Medium (not SemiBold)
             fontSize = 12.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.5.sp
+            letterSpacing = 0.5.sp            // M3: 0.5sp ✓
         ),
         labelSmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,   // M3: Medium (not SemiBold)
             fontSize = 11.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.5.sp
+            letterSpacing = 0.5.sp            // M3: 0.5sp ✓
         )
     )
 

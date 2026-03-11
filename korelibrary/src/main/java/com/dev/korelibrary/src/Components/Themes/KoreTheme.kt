@@ -26,6 +26,7 @@ data class KoreColors(
     val onBackGround : Color,
     val backGroundVariant : Color,
     val onBackGroundVariant : Color,
+    val accent : Color,
     val disabled: Color,
     val onDisabled : Color,
     val primary : Color,

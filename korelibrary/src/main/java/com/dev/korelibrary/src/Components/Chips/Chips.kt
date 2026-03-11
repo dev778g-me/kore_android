@@ -30,7 +30,7 @@ import io.jadu.nivi.presentation.utils.squircleShape.SquircleShape
 internal fun BaseChip(
     content : @Composable ()-> Unit,
     modifier: Modifier = Modifier,
-    shape : Shape = ChipDefaults.defaultChipShape,
+    shape : Shape,
     chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
@@ -101,7 +101,7 @@ internal fun BaseChip(
 fun PrimaryChip(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    shape: Shape = ChipDefaults.defaultChipShape,
+    shape: Shape = KoreTheme.shapes.large,
     chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
@@ -125,7 +125,7 @@ fun PrimaryChip(
 fun SuccessChip(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    shape: Shape = ChipDefaults.defaultChipShape,
+    shape: Shape = KoreTheme.shapes.large,
     chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
@@ -149,7 +149,7 @@ fun SuccessChip(
 fun ErrorChip(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    shape: Shape = ChipDefaults.defaultChipShape,
+    shape: Shape = KoreTheme.shapes.large,
     chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
@@ -172,7 +172,7 @@ fun ErrorChip(
 fun SecondaryChip(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    shape: Shape = ChipDefaults.defaultChipShape,
+    shape: Shape = KoreTheme.shapes.large,
     chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
@@ -195,7 +195,7 @@ fun SecondaryChip(
 fun OutlinedChip(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    shape: Shape = ChipDefaults.defaultChipShape,
+    shape: Shape = KoreTheme.shapes.large,
     chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
@@ -267,8 +267,8 @@ object ChipDefaults {
 
     @Composable
     fun secondaryChipColors(
-        containerColor: Color = KoreTheme.colorScheme.backGroundVariant,
-        contentColor: Color = KoreTheme.colorScheme.onBackGroundVariant,
+        containerColor: Color = KoreTheme.colorScheme.primaryContainer,
+        contentColor: Color = KoreTheme.colorScheme.onPrimaryContainer,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
         disabledContentColor: Color = KoreTheme.colorScheme.onDisabled,
         leadingContentColor: Color = KoreTheme.colorScheme.onBackGroundVariant,
@@ -289,7 +289,7 @@ object ChipDefaults {
 
     @Composable
     fun outlinedChipColor(
-        containerColor: Color = KoreTheme.colorScheme.primary.copy(alpha = 0.1f),
+        containerColor: Color = KoreTheme.colorScheme.transParentColor,
         contentColor: Color = KoreTheme.colorScheme.primary,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
         disabledContentColor: Color = KoreTheme.colorScheme.onDisabled,
@@ -351,7 +351,7 @@ object ChipDefaults {
     )
 
    // the default size for the chip
-    val defaultChipShape = SquircleShape(90.dp, cornerSmoothing = CornerSmoothing.Small)
+
 
 
 
