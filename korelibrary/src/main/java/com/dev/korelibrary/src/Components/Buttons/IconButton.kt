@@ -110,7 +110,7 @@ fun SecondaryIconButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        shape = CircleShape,
+        shape = shape,
         iconButtonColors =  secondaryIconButtonColors,
         content = content
     )

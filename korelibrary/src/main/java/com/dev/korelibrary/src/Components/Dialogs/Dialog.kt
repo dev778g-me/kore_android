@@ -42,7 +42,7 @@ fun AlertDialog(
     modifier: Modifier = Modifier,
     title : @Composable () -> Unit,
     description : @Composable () -> Unit = {},
-    dialogShape : Shape = KoreTheme.shapes.large,
+    dialogShape : Shape = DialogDefaults.defaultDialogShape,
     dialogColors: DialogColors = DialogDefaults.alertDialogColors(),
     dismissButton : @Composable () -> Unit ={},
     confirmButton : @Composable () -> Unit ={},
@@ -117,6 +117,9 @@ fun AlertDialog(
 }
 
 object DialogDefaults{
+
+    val defaultDialogShape : Shape
+        @Composable get() = KoreTheme.shapes.large
     val defaultDialogPaddingValues : PaddingValues = PaddingValues(24.dp)
 
     val defaultDialogProperties : DialogProperties = DialogProperties(

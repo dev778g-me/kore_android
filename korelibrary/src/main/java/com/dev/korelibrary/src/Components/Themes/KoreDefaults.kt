@@ -15,7 +15,7 @@ object KoreDefaults{
         onBackGround = RadixColors.Black.blackA12,
 
         backGroundVariant = RadixColors.Gray.Light.step4,
-        onBackGroundVariant = RadixColors.Gray.Light.step11,
+        onBackGroundVariant = RadixColors.Gray.Light.step12,
         accent = RadixColors.Blue.Light.step4,
         // disabled colors
         disabled = RadixColors.Gray.Light.step3,
@@ -52,7 +52,7 @@ object KoreDefaults{
         onBackGround = RadixColors.White.whiteA12,
 
         backGroundVariant = RadixColors.Gray.Dark.step4,
-        onBackGroundVariant = RadixColors.Gray.Dark.step11,
+        onBackGroundVariant = RadixColors.Gray.Dark.step12,
         accent = RadixColors.Blue.Dark.step1,
         // disabled colors
         disabled = RadixColors.Gray.Dark.step3,

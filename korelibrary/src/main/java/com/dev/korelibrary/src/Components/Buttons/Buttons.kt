@@ -56,7 +56,7 @@ internal fun BaseButton (
         LocalTextStyle provides TextStyle.Default.merge(
             when(buttonSize){
                 ButtonSizes.Small -> KoreTheme.typography.labelMedium
-                ButtonSizes.Normal -> KoreTheme.typography.titleSmall
+                ButtonSizes.Normal -> KoreTheme.typography.titleMedium
                 ButtonSizes.Medium -> KoreTheme.typography.titleMedium
                 ButtonSizes.Large -> KoreTheme.typography.headingSmall
             }

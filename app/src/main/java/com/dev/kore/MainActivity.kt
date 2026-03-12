@@ -4,10 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,8 +25,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dev.korelibrary.src.Components.Accordion.Accordion
+import com.dev.korelibrary.src.Components.Buttons.ButtonSizes
+import com.dev.korelibrary.src.Components.Buttons.GhostIconButton
 import com.dev.korelibrary.src.Components.Buttons.Icon
+import com.dev.korelibrary.src.Components.Buttons.PrimaryButton
+import com.dev.korelibrary.src.Components.Buttons.SecondaryButton
+import com.dev.korelibrary.src.Components.Buttons.SecondaryIconButton
+import com.dev.korelibrary.src.Components.Card.Card
+import com.dev.korelibrary.src.Components.Card.OutlinedCard
 import com.dev.korelibrary.src.Components.Scaffold.Scaffold
+import com.dev.korelibrary.src.Components.Stack.VerticalStack
 import com.dev.korelibrary.src.Components.Text
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
 import icons.PhIcons
@@ -28,6 +43,7 @@ import icons.duotone.CaretDownDuotone
 import icons.duotone.CodeDuotone
 import icons.duotone.CodepenLogoDuotone
 import icons.duotone.FigmaLogoDuotone
+import icons.regular.Code
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,100 +65,63 @@ class MainActivity : ComponentActivity() {
 )
 @Composable
 fun AccordCompo(modifier: Modifier = Modifier) {
-    var expandedAccordion by rememberSaveable() {mutableStateOf(false) }
-    var expanded2 by rememberSaveable() {mutableStateOf(false) }
+    var expandedAccordion by rememberSaveable() { mutableStateOf(false) }
+    var expanded2 by rememberSaveable() { mutableStateOf(false) }
     var accordion1 by remember { mutableStateOf(false) }
     var accordion2 by remember { mutableStateOf(false) }
     var accordion3 by remember { mutableStateOf(false) }
 
 
     Scaffold() {
-       Column(
-           modifier = modifier
-               .fillMaxSize()
-               .padding(
-                   horizontal = 16.dp
-               ),
-           verticalArrangement = Arrangement.Center,
-         //  horizontalAlignment = Alignment.CenterHorizontally
-       ) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(
+                    horizontal = 16.dp
+                ),
+            verticalArrangement = Arrangement.Center,
+            //  horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-           Accordion(
-               separator = false,
-               expanded = accordion1,
-               header = {
-                   Text("What is Jetpack Compose?")
-               },
-               icon = {
-                   Icon(
-                       imageVector = PhIcons.Duotone.CaretDownDuotone,
-                       contentDescription = ""
-                   )
-               },
-               expandedContent = {
-                   Text("Jetpack Compose is Android's modern toolkit for building native UI with Kotlin.")
-               },
-               leadingIcon = {
-                   Icon(
-                       imageVector = PhIcons.Duotone.CodepenLogoDuotone,
-                       contentDescription = null
-                   )
-               },
-               onExpand = {
-                   accordion1 = !accordion1
-               }
-           )
+            OutlinedCard(
 
-           Accordion(
-               expanded = accordion2,
-               header = {
-                   Text("What is a Design System?")
-               },
-               icon = {
-                   Icon(
-                       imageVector = PhIcons.Duotone.CaretDownDuotone,
-                       contentDescription = ""
-                   )
-               },
-               expandedContent = {
-                   Text("A design system contains reusable UI components and guidelines.")
-               },
-               leadingIcon = {
-                   Icon(
-                       imageVector = PhIcons.Duotone.FigmaLogoDuotone,
-                       contentDescription = null
-                   )
-               },
-               onExpand = {
-                   accordion2 = !accordion2
-               }
-           )
+            ) {
+                SecondaryButton(
+                    onClick = {}
+                ) {
 
-           Accordion(
-               expanded = accordion3,
-               header = {
-                   Text("Why use a design system?")
-               },
-               icon = {
-                   Icon(
-                       imageVector = PhIcons.Duotone.CaretDownDuotone,
-                       contentDescription = ""
-                   )
-               },
-               expandedContent = {
-                   Text("It improves consistency, speed of development, and UI quality.")
-               },
-               leadingIcon = {
-                   Icon(
-                       imageVector = PhIcons.Duotone.CodeDuotone,
-                       contentDescription = null
-                   )
-               },
-               onExpand = {
-                   accordion3 = !accordion3
-               }
-           )
+                    Text("Hello")
+                }
 
-       }
-   }
+
+
+
+                Text(
+                    // color = KoreTheme.colorScheme.primary,
+                    text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non pro"
+                )
+            }
+            Spacer(
+                modifier = modifier.height(24.dp)
+            )
+            Card(
+
+            ) {
+                SecondaryIconButton(
+                    onClick = {}
+                ) {
+                    Icon(
+                        imageVector = PhIcons.Duotone.FigmaLogoDuotone,
+                        contentDescription = null
+                    )
+                }
+
+                Text(
+                    //color = KoreTheme.colorScheme.primary,
+                    text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non pro"
+                )
+            }
+
+        }
+    }
 }
