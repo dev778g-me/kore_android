@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -75,7 +76,7 @@ fun BaseCard(
                 color = colors.containerColor,
                 shape = shape
             )
-
+            .clip(shape = shape)
             .then(if (borderStroke != null) Modifier.border(borderStroke, shape) else Modifier)
             .padding(
                 contentPaddingValues
