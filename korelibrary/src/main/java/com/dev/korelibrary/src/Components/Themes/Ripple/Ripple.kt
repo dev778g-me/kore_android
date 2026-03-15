@@ -9,8 +9,11 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.graphics.drawscope.clipRect
@@ -39,7 +42,8 @@ private class FoundationRippleNode(
     private val color: Color,
     private val bounded: Boolean,
     private val radius : Dp
-) : Modifier.Node(), DrawModifierNode{
+) : Modifier.Node(),
+    DrawModifierNode{
 
     // job for the coroutine
     private var interactionJob: Job? = null
@@ -56,6 +60,16 @@ private class FoundationRippleNode(
   // overriding the on attach function
     override fun onAttach() {
         super.onAttach()
+
+      coroutineScope.launch {
+          snapshotFlow {
+              animatedRadiusPercent.value + animatedAlpha.value
+
+          }.collect {
+              invalidateDraw()
+          }
+      }
+
         interactionJob = coroutineScope.launch {
 
             // collecting interactions
@@ -66,49 +80,45 @@ private class FoundationRippleNode(
 
                     is PressInteraction.Press -> {
 
+                        animatedRadiusPercent.snapTo(0f)
 
-                        launch { animatedRadiusPercent.stop() }
-                        launch { animatedAlpha.stop() }
-
-
-                        launch {
-                            animatedRadiusPercent.snapTo(0f)
-                            animatedAlpha.snapTo(0f)
-                            invalidateDraw()
-                        }
+                        animatedAlpha.snapTo(0f)
 
 
-                        touchPosition = interaction.pressPosition
 
-                        // Fade in fast
                         launch {
                             animatedAlpha.animateTo(
-                                targetValue = 0.25f,
+                                targetValue = 0.12f,
                                 animationSpec = tween(200)
                             )
                         }
 
-                        // Radius expansion
+
+
+
+                        // Fade in fast
                         launch {
-                            animatedRadiusPercent.animateTo(
-                                targetValue = 1f,
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioNoBouncy,
-                                    stiffness = Spring.StiffnessLow
-                                )
-                            )
+                           animatedRadiusPercent.animateTo(
+                               targetValue = 1f,
+                           )
                         }
+
+                        // Radius expansion
+
                     }
 
 
                     // animating the alpha value to 0
                    is PressInteraction.Cancel,is PressInteraction.Release ->{
-                       launch {
-                           animatedAlpha.animateTo(
-                               targetValue = 0f,
-                               tween(300)
-                           )
-                       }
+                       animatedRadiusPercent.animateTo(
+                           targetValue = 1f,
+                           animationSpec = tween(100)
+                       )
+                       // then fade out
+                       animatedAlpha.animateTo(
+                           targetValue = 0f,
+                           animationSpec = tween(400)
+                       )
                    }
 
                }
@@ -136,19 +146,19 @@ private class FoundationRippleNode(
             radius.toPx()
         } else {
             // diagonal radius to cover corners
-            kotlin.math.hypot(size.width, size.height)
+            (size.maxDimension/2f) * 1.15f
         }
 
 
         // getting the radius
         val currentRadius = targetRadius * animatedRadiusPercent.value
         val rippleColor  = color.copy(alpha = alpha)
-
+        val center = Offset(size.width/2f ,size.height/2f)
 
         if (bounded){
             clipRect {
                 drawCircle(
-                    center = touchPosition ,
+                    center = center ,
                     color = rippleColor,
                     radius = currentRadius
                 )
@@ -210,7 +220,7 @@ private class FoundationRippleNodeFactory(
         return result
     }
 }
-
+@Stable
 fun koreRipple(
     color: Color = Color.Black,
     bounded: Boolean = true,
