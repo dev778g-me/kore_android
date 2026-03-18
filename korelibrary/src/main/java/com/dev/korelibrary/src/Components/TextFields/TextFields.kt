@@ -57,11 +57,9 @@ internal fun BaseTextField(
 ) {
     val textFieldInteractionSource = remember { MutableInteractionSource() }
     val isFocused by textFieldInteractionSource.collectIsFocusedAsState()
-    val shouldFloat = value.isNotEmpty() || isFocused
+    val shouldShow = value.isNotEmpty() || isFocused
     CompositionLocalProvider(
-        LocalTextStyle provides TextStyle.Default.merge(
-            KoreTheme.typography.titleSmall
-        ),
+        LocalTextStyle provides KoreTheme.typography.titleMedium,
         LocalContentColor provides textFieldColors.contentColor(
             enabled = enabled,
             error = isError,
@@ -130,7 +128,7 @@ internal fun BaseTextField(
                             label = label,
                             isError = isError,
                             isFocused = isFocused,
-                            shouldFloat = shouldFloat,
+                            shouldFloat = shouldShow ,
                             )
                     }, value = value, onValueChange = {
                         onValueChange.invoke(it)
@@ -206,7 +204,11 @@ fun DecorationBox(
                 )
 
             }
-            innerTextField()
+            CompositionLocalProvider(
+                value = LocalTextStyle provides KoreTheme.typography.labelSmall
+            ) {
+                innerTextField()
+            }
         }
 
 
@@ -235,11 +237,6 @@ fun DecorationBox(
         }
     }}
 
-
-@Composable
-fun FilledTextField(modifier: Modifier = Modifier) {
-
-}
 
 
 

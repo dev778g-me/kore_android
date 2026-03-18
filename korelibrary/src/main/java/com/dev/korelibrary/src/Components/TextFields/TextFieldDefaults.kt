@@ -30,11 +30,11 @@ object TextFieldDefaults {
         unFocusedTextColor: Color = KoreTheme.colorScheme.onBackGround,
         errorTextColors: Color = KoreTheme.colorScheme.onBackGround,
         disabledTextColor: Color = KoreTheme.colorScheme.disabled,
-        unFocusedLeadingIconColor: Color = KoreTheme.colorScheme.onDisabled,
+        unFocusedLeadingIconColor: Color = KoreTheme.colorScheme.onBackGround,
         focusedLeadingIconColor: Color = KoreTheme.colorScheme.onBackGround,
         errorLeadingIconColor: Color = KoreTheme.colorScheme.error,
         disabledLeadingIconColor: Color = KoreTheme.colorScheme.onDisabled,
-        unFocusedTrailingIconColor: Color  = KoreTheme.colorScheme.onDisabled,
+        unFocusedTrailingIconColor: Color  = KoreTheme.colorScheme.onBackGround,
         focusedTrailingIconColor : Color = KoreTheme.colorScheme.onBackGround,
         errorTrailingIconColor : Color = KoreTheme.colorScheme.error,
         disabledTrailingIconColor : Color = KoreTheme.colorScheme.onDisabled,
@@ -68,7 +68,8 @@ object TextFieldDefaults {
         disabledTrailingIconColor = disabledTrailingIconColor,
     )
 
-    val defaultTextFieldShape = KoreDefaults.defaultShapes.normal
+    val defaultTextFieldShape
+        @Composable get() = KoreTheme.shapes.medium
 
     val minimumTextFieldHeight = 56.dp
 
