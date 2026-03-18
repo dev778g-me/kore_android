@@ -2,6 +2,7 @@ package com.dev.korelibrary.src.Components.Themes.Ripple
 
 
 
+import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -57,28 +58,26 @@ private class FoundationRippleNode(
     // current touch position
     private var touchPosition = Offset.Zero
 
+
   // overriding the on attach function
     override fun onAttach() {
         super.onAttach()
 
-      coroutineScope.launch {
-          snapshotFlow {
-              animatedRadiusPercent.value + animatedAlpha.value
-
-          }.collect {
-              invalidateDraw()
-          }
-      }
 
         interactionJob = coroutineScope.launch {
 
             // collecting interactions
-            interactionSource.interactions.collectLatest { interaction ->
+            interactionSource.interactions.collect { interaction ->
 
                 when (interaction) {
 
 
                     is PressInteraction.Press -> {
+
+                        touchPosition = interaction.pressPosition
+
+
+                        //touchPosition = interaction.pressPosition
 
                         animatedRadiusPercent.snapTo(0f)
 
@@ -96,32 +95,41 @@ private class FoundationRippleNode(
 
 
 
-                        // Fade in fast
                         launch {
                            animatedRadiusPercent.animateTo(
                                targetValue = 1f,
+                               animationSpec = tween(700)
                            )
                         }
 
-                        // Radius expansion
+
 
                     }
 
+                    is PressInteraction.Cancel ->{
+                        animatedAlpha.animateTo(
+                            targetValue = 0f,
+                            animationSpec = tween(200)
+                        )
+                    }
 
-                    // animating the alpha value to 0
-                   is PressInteraction.Cancel,is PressInteraction.Release ->{
-                       animatedRadiusPercent.animateTo(
-                           targetValue = 1f,
-                           animationSpec = tween(100)
-                       )
-                       // then fade out
-                       animatedAlpha.animateTo(
-                           targetValue = 0f,
-                           animationSpec = tween(400)
-                       )
-                   }
 
-               }
+                    is PressInteraction.Release -> {
+                        Logger.showLog("released")
+
+                        coroutineScope.launch {
+                            animatedRadiusPercent.animateTo(
+                                targetValue = 1f,
+                                animationSpec = tween(350,)
+                            )
+
+                            animatedAlpha.animateTo(0f, animationSpec = tween(400))
+                        }
+
+
+                    }
+
+                }
            }
        }
 
@@ -146,7 +154,8 @@ private class FoundationRippleNode(
             radius.toPx()
         } else {
             // diagonal radius to cover corners
-            (size.maxDimension/2f) * 1.15f
+            Logger.showLog("else case")
+            size.maxDimension * 2.15f
         }
 
 
@@ -156,9 +165,11 @@ private class FoundationRippleNode(
         val center = Offset(size.width/2f ,size.height/2f)
 
         if (bounded){
-            clipRect {
+            clipRect(
+
+            ) {
                 drawCircle(
-                    center = center ,
+                    center = touchPosition ,
                     color = rippleColor,
                     radius = currentRadius
                 )
@@ -167,7 +178,7 @@ private class FoundationRippleNode(
             drawCircle(
                 center = touchPosition,
                 color = rippleColor,
-                radius = currentRadius
+                radius = size.maxDimension
             )
         }
 
@@ -234,3 +245,8 @@ fun koreRipple(
 }
 
 
+object Logger{
+    fun showLog(msg : String){
+        Log.d("RippleEffect", msg)
+    }
+}
