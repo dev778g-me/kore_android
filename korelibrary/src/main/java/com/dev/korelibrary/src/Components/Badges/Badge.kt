@@ -1,4 +1,4 @@
-package com.dev.korelibrary.src.Components.Chips
+package com.dev.korelibrary.src.Components.Badges
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -17,37 +16,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.dev.korelibrary.src.Components.Chips.ChipDefaults.containerColor
-import com.dev.korelibrary.src.Components.Chips.ChipDefaults.contentColor
+import com.dev.korelibrary.src.Components.Badges.BadgeDefaults.containerColor
+import com.dev.korelibrary.src.Components.Badges.BadgeDefaults.contentColor
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
 import com.dev.korelibrary.src.Components.Themes.LocalContentColor
 import com.dev.korelibrary.src.Components.Themes.LocalTextStyle
-import io.jadu.nivi.presentation.utils.squircleShape.CornerSmoothing
-import io.jadu.nivi.presentation.utils.squircleShape.SquircleShape
 
 
 @Composable
-internal fun BaseChip(
+internal fun BaseBadge(
     content : @Composable ()-> Unit,
     modifier: Modifier = Modifier,
     shape : Shape,
-    chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
+    badgeSizes: BadgeSizes = BadgeDefaults.defaultBadgeSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     border : BorderStroke ? = null,
     enabled : Boolean = true,
-    chipColors: ChipColors
+    badgeColors: BadgeColors
 ) {
     CompositionLocalProvider(
         values = arrayOf(
-            LocalContentColor provides chipColors.contentColor(enabled = enabled),
+            LocalContentColor provides badgeColors.contentColor(enabled = enabled),
             LocalTextStyle provides KoreTheme.typography.labelMedium
         )
     ) {
         Box(
             modifier = modifier
                 .background(
-                    shape = shape, color = chipColors.containerColor(enabled = enabled)
+                    shape = shape, color = badgeColors.containerColor(enabled = enabled)
                 )
                 .then(
                     if (border != null) Modifier.border(
@@ -58,14 +55,14 @@ internal fun BaseChip(
         ) {
             Row(
                 modifier = Modifier.padding(
-                   chipSizes.containerPadding
+                   badgeSizes.containerPadding
                 )
                 ,verticalAlignment = Alignment.CenterVertically
             ) {
               leadingIcon?.let {
                   Box(
                       modifier = Modifier
-                          .size(chipSizes.leadingIconSize)
+                          .size(badgeSizes.leadingIconSize)
                   ){
                       leadingIcon()
                   }
@@ -73,7 +70,7 @@ internal fun BaseChip(
 
                 Box(
                     modifier = modifier.padding(
-                     chipSizes.contentPadding
+                     badgeSizes.contentPadding
                     )
                 ){
                     content()
@@ -82,7 +79,7 @@ internal fun BaseChip(
                 trailingIcon?.let {
                     Box(
                         modifier = Modifier
-                            .size(chipSizes.trailingIconSize)
+                            .size(badgeSizes.trailingIconSize)
                     ) {
                         trailingIcon()
                     }
@@ -98,123 +95,123 @@ internal fun BaseChip(
 // primary chip will be used for the primary actions
 
 @Composable
-fun PrimaryChip(
+fun PrimaryBadge(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = KoreTheme.shapes.large,
-    chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
+    badgeSizes: BadgeSizes = BadgeDefaults.defaultBadgeSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
-    chipColors: ChipColors = ChipDefaults.primaryChipColors()
+    badgeColors: BadgeColors = BadgeDefaults.primaryBadgeColors()
 ) {
-    BaseChip(
+    BaseBadge(
         content = content,
         modifier = modifier,
         shape = shape,
-        chipSizes = chipSizes,
+        badgeSizes = badgeSizes,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         enabled = enabled,
-        chipColors = chipColors
+        badgeColors = badgeColors
     )
 }
 
 
 @Composable
-fun SuccessChip(
+fun SuccessBadge(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = KoreTheme.shapes.large,
-    chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
+    badgeSizes: BadgeSizes = BadgeDefaults.defaultBadgeSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
-    chipColors: ChipColors = ChipDefaults.successChipColors()
+    badgeColors: BadgeColors = BadgeDefaults.successBadgeColors()
 ) {
-    BaseChip(
+    BaseBadge(
         content = content,
         modifier = modifier,
         shape = shape,
-        chipSizes = chipSizes,
+        badgeSizes = badgeSizes,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         enabled = enabled,
-        chipColors = chipColors
+        badgeColors = badgeColors
     )
 }
 
 
 @Composable
-fun ErrorChip(
+fun ErrorBadge(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = KoreTheme.shapes.large,
-    chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
+    badgeSizes: BadgeSizes = BadgeDefaults.defaultBadgeSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
-    chipColors: ChipColors = ChipDefaults.errorChipColors()
+    badgeColors: BadgeColors = BadgeDefaults.errorBadgeColors()
 ) {
-    BaseChip(
+    BaseBadge(
         content = content,
         modifier = modifier,
         shape = shape,
-        chipSizes = chipSizes,
+        badgeSizes = badgeSizes,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         enabled = enabled,
-        chipColors = chipColors
+        badgeColors = badgeColors
     )
 }
 
 @Composable
-fun SecondaryChip(
+fun SecondaryBadge(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = KoreTheme.shapes.large,
-    chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
+    badgeSizes: BadgeSizes = BadgeDefaults.defaultBadgeSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
-    chipColors: ChipColors = ChipDefaults.secondaryChipColors()
+    badgeColors: BadgeColors = BadgeDefaults.secondaryBadgeColors()
 ) {
-    BaseChip(
+    BaseBadge(
         content = content,
         modifier = modifier,
         shape = shape,
-        chipSizes = chipSizes,
+        badgeSizes = badgeSizes,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         enabled = enabled,
-        chipColors = chipColors
+        badgeColors = badgeColors
     )
 }
 
 @Composable
-fun OutlinedChip(
+fun OutlinedBadge(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = KoreTheme.shapes.large,
-    chipSizes: ChipSizes = ChipDefaults.defaultChipSize(),
+    badgeSizes: BadgeSizes = BadgeDefaults.defaultBadgeSize(),
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
-    chipColors: ChipColors = ChipDefaults.outlinedChipColor()
+    badgeColors: BadgeColors = BadgeDefaults.outlinedBadgeColor()
 ) {
-    BaseChip(
+    BaseBadge(
         content = content,
         modifier = modifier,
         shape = shape,
-        chipSizes = chipSizes,
+        badgeSizes = badgeSizes,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         border = androidx.compose.foundation.BorderStroke(
             width = 1.dp,
-            color = if (enabled) chipColors.contentColor else chipColors.disabledContentColor
+            color = if (enabled) badgeColors.contentColor else badgeColors.disabledContentColor
         ),
         enabled = enabled,
-        chipColors = chipColors
+        badgeColors = badgeColors
     )
 }
 
@@ -223,10 +220,10 @@ fun OutlinedChip(
 
 
 
-object ChipDefaults {
+object BadgeDefaults {
 
   @Composable
-  fun defaultChipSize (
+  fun defaultBadgeSize (
       leadingIconSize: Dp = defaultLeadingIconSize,
       leadingIconPadding: PaddingValues = PaddingValues(0.dp),
       trailingIconSize: Dp = defaultTrailingIconSize,
@@ -234,7 +231,7 @@ object ChipDefaults {
       contentPadding : PaddingValues = horizontalContentPadding,
       containerPadding : PaddingValues = PaddingValues(vertical = 2.dp, horizontal = 6.dp)
   )
-  = ChipSizes(
+  = BadgeSizes(
       leadingIconSize = leadingIconSize,
       leadingIconPadding = leadingIconPadding,
       trailingIconSize = trailingIconSize,
@@ -245,7 +242,7 @@ object ChipDefaults {
 
 
     @Composable
-    fun primaryChipColors(
+    fun primaryBadgeColors(
         containerColor: Color = KoreTheme.colorScheme.primary,
         contentColor: Color = KoreTheme.colorScheme.onPrimary,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
@@ -254,7 +251,7 @@ object ChipDefaults {
         disabledLeadingContentColor: Color = KoreTheme.colorScheme.onDisabled,
         trailingContentColor: Color = KoreTheme.colorScheme.onPrimary,
         disabledTrailingContentColor: Color = KoreTheme.colorScheme.onDisabled
-    ) = ChipColors(
+    ) = BadgeColors(
         containerColor = containerColor,
         contentColor = contentColor,
         disabledContainerColor = disabledContainerColor,
@@ -266,7 +263,7 @@ object ChipDefaults {
     )
 
     @Composable
-    fun secondaryChipColors(
+    fun secondaryBadgeColors(
         containerColor: Color = KoreTheme.colorScheme.primaryContainer,
         contentColor: Color = KoreTheme.colorScheme.onPrimaryContainer,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
@@ -276,7 +273,7 @@ object ChipDefaults {
         trailingContentColor: Color = KoreTheme.colorScheme.onBackGroundVariant,
         disabledTrailingContentColor: Color = KoreTheme.colorScheme.onDisabled
     )  =
-        ChipColors(
+        BadgeColors(
             containerColor = containerColor,
             contentColor = contentColor,
             disabledContainerColor = disabledContainerColor,
@@ -288,7 +285,7 @@ object ChipDefaults {
         )
 
     @Composable
-    fun outlinedChipColor(
+    fun outlinedBadgeColor(
         containerColor: Color = KoreTheme.colorScheme.transParentColor,
         contentColor: Color = KoreTheme.colorScheme.primary,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
@@ -297,7 +294,7 @@ object ChipDefaults {
         disabledLeadingContentColor: Color = KoreTheme.colorScheme.onDisabled,
         trailingContentColor: Color = KoreTheme.colorScheme.onBackGroundVariant,
         disabledTrailingContentColor: Color = KoreTheme.colorScheme.onDisabled
-    ) = ChipColors(
+    ) = BadgeColors(
         containerColor = containerColor,
         contentColor = contentColor,
         disabledContainerColor = disabledContainerColor,
@@ -309,7 +306,7 @@ object ChipDefaults {
     )
 
     @Composable
-    fun successChipColors(
+    fun successBadgeColors(
         containerColor: Color = KoreTheme.colorScheme.success,
         contentColor: Color = KoreTheme.colorScheme.onSuccess,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
@@ -318,7 +315,7 @@ object ChipDefaults {
         disabledLeadingContentColor: Color = KoreTheme.colorScheme.onDisabled,
         trailingContentColor: Color = KoreTheme.colorScheme.onSuccess,
         disabledTrailingContentColor: Color = KoreTheme.colorScheme.onDisabled
-    ) = ChipColors(
+    ) = BadgeColors(
         containerColor = containerColor,
         contentColor = contentColor,
         disabledContainerColor = disabledContainerColor,
@@ -330,7 +327,7 @@ object ChipDefaults {
     )
 
     @Composable
-    fun errorChipColors(
+    fun errorBadgeColors(
         containerColor: Color = KoreTheme.colorScheme.error,
         contentColor: Color = KoreTheme.colorScheme.onError,
         disabledContainerColor: Color = KoreTheme.colorScheme.disabled,
@@ -339,7 +336,7 @@ object ChipDefaults {
         disabledLeadingContentColor: Color = KoreTheme.colorScheme.onDisabled,
         trailingContentColor: Color = KoreTheme.colorScheme.onError,
         disabledTrailingContentColor: Color = KoreTheme.colorScheme.onDisabled
-    ) = ChipColors(
+    ) = BadgeColors(
         containerColor = containerColor,
         contentColor = contentColor,
         disabledContainerColor = disabledContainerColor,
@@ -364,14 +361,14 @@ object ChipDefaults {
     val defaultTrailingIconSize = 18.dp
 
 
-    internal fun ChipColors.contentColor (
+    internal fun BadgeColors.contentColor (
        enabled : Boolean
     ) : Color{
        return if (enabled) contentColor else disabledContentColor
     }
 
 
-    internal fun ChipColors.containerColor(
+    internal fun BadgeColors.containerColor(
         enabled: Boolean
     ) : Color{
         return if (enabled) containerColor else disabledContainerColor
@@ -381,7 +378,7 @@ object ChipDefaults {
 }
 
 
-data class ChipColors(
+data class BadgeColors(
     val containerColor: Color,
     val contentColor: Color,
     val disabledContainerColor : Color,
@@ -392,7 +389,7 @@ data class ChipColors(
     val disabledTrailingContentColor : Color
 )
 
-data class ChipSizes(
+data class BadgeSizes(
     val leadingIconSize : Dp = Dp.Unspecified,
     val leadingIconPadding : PaddingValues,
     val trailingIconSize : Dp = Dp.Unspecified,
