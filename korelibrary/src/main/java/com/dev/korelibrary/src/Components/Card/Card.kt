@@ -102,7 +102,7 @@ object CardDefaults {
 
     val defaultOutlinedBorderStroke: BorderStroke
         @Composable get() = BorderStroke(
-            width = 1.dp,
+            width = 2.dp,
             color = KoreTheme.colorScheme.backGroundVariant,
         )
 
