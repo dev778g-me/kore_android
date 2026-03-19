@@ -22,26 +22,41 @@ import com.dev.korelibrary.src.Components.Themes.Ripple.koreRipple
 
 @Immutable
 data class KoreColors(
-    val background : Color,
-    val onBackGround : Color,
-    val backGroundVariant : Color,
-    val onBackGroundVariant : Color,
-    val accent : Color,
+    // background
+    val background: Color,
+    val onBackGround: Color,
+    val backGroundVariant: Color,
+    val onBackGroundVariant: Color,
+
+    // surface
+    val surface: Color,
+    val onSurface: Color,
+    val surfaceBright: Color,
+    val onSurfaceBright: Color,
+
+    // primary
+    val primary: Color,
+    val onPrimary: Color,
+    val primaryContainer: Color,
+    val onPrimaryContainer: Color,
+
+    // secondary
+    val secondary: Color,
+    val onSecondary: Color,
+    val secondaryContainer: Color,
+    val onSecondaryContainer: Color,
+
+    // semantic
+    val success: Color,
+    val onSuccess: Color,
+    val error: Color,
+    val onError: Color,
+
+    // misc
+    val accent: Color,
     val disabled: Color,
-    val onDisabled : Color,
-    val primary : Color,
-    val onPrimary : Color,
-    val primaryContainer : Color,
-    val onPrimaryContainer : Color,
-    val secondary : Color,
-    val onSecondary : Color,
-    val secondaryContainer : Color,
-    val onSecondaryContainer : Color,
-    val success : Color,
-    val onSuccess : Color,
-    val error : Color,
-    val onError : Color,
-    val transParentColor : Color
+    val onDisabled: Color,
+    val transParentColor: Color,
 )
 
 @Immutable
@@ -99,7 +114,7 @@ val LocalKoreSizes = staticCompositionLocalOf {
     defaultSizes
 }
 
-val LocalTextStyle = staticCompositionLocalOf { defaultTypography.headingLarge }
+val LocalTextStyle = staticCompositionLocalOf { defaultTypography.titleSmall }
 
 
 val LocalContentColor = staticCompositionLocalOf { defaultLightColorScheme.onBackGround }
