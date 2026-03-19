@@ -4,6 +4,8 @@ package com.dev.korelibrary.src.Components.Themes.Ripple
 
 import android.util.Log
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -88,7 +90,7 @@ private class FoundationRippleNode(
                         launch {
                             animatedAlpha.animateTo(
                                 targetValue = 0.12f,
-                                animationSpec = tween(200)
+                                animationSpec = tween(100, easing = LinearEasing)
                             )
                         }
 
@@ -98,7 +100,7 @@ private class FoundationRippleNode(
                         launch {
                            animatedRadiusPercent.animateTo(
                                targetValue = 1f,
-                               animationSpec = tween(700)
+                               animationSpec = tween(450, easing = FastOutSlowInEasing)
                            )
                         }
 
@@ -120,10 +122,10 @@ private class FoundationRippleNode(
                         coroutineScope.launch {
                             animatedRadiusPercent.animateTo(
                                 targetValue = 1f,
-                                animationSpec = tween(350,)
+                                animationSpec = tween(300,)
                             )
 
-                            animatedAlpha.animateTo(0f, animationSpec = tween(400))
+                            animatedAlpha.animateTo(0f, animationSpec = tween(350))
                         }
 
 
@@ -153,16 +155,16 @@ private class FoundationRippleNode(
         val targetRadius = if (radius != Dp.Unspecified) {
             radius.toPx()
         } else {
-            // diagonal radius to cover corners
-            Logger.showLog("else case")
-            size.maxDimension * 2.15f
+            val dx = maxOf(touchPosition.x, size.width - touchPosition.x)
+            val dy = maxOf(touchPosition.y, size.height - touchPosition.y)
+            kotlin.math.sqrt(dx * dx + dy * dy) * 1.1f
         }
 
 
         // getting the radius
         val currentRadius = targetRadius * animatedRadiusPercent.value
         val rippleColor  = color.copy(alpha = alpha)
-        val center = Offset(size.width/2f ,size.height/2f)
+
 
         if (bounded){
             clipRect(
