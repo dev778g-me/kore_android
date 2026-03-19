@@ -7,17 +7,23 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +35,8 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
 
@@ -39,7 +47,8 @@ fun CheckBox(
     onCheckChange : (Boolean) -> Unit,
     enabled: Boolean = true,
     shape: Shape = CheckBoxDefaults.defaultCheckBoxShape,
-    colors: CheckBoxColors = CheckBoxDefaults.defaultCheckBoxColors()
+    colors: CheckBoxColors = CheckBoxDefaults.defaultCheckBoxColors(),
+    interactionSource: MutableInteractionSource ? = null,
 ) {
 
     val backgroundColor by animateColorAsState(
@@ -56,29 +65,33 @@ fun CheckBox(
         targetValue = colors.checkColor(checked, enabled)
     )
 
+
+
+    val toggleModifier = Modifier.toggleable(
+        value = checked,
+        onValueChange = onCheckChange,
+        role = Role.Checkbox,
+        indication = LocalIndication.current,
+        interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+    )
+
+
     Box(
         modifier = modifier
             .defaultMinSize(
                 minHeight = CheckBoxDefaults.defaultCheckBoxSize,
                 minWidth = CheckBoxDefaults.defaultCheckBoxSize
             )
-
+            .clip(shape = shape) .then(toggleModifier)
             .background(
                 color =backgroundColor,
                 shape =shape
             )
-            .clip(shape = shape)
             .border(
                 width = 2.dp,
-                color =colors.borderColor(checked = checked, enabled =enabled ),
+                color = borderColor,
                 shape = shape
-            )
-            .clickable(
-                enabled = enabled,
-                onClick = {
-                   onCheckChange(!checked)
-                }
-            ) ,
+            ),
         contentAlignment = Alignment.Center
     ){
 
