@@ -1,10 +1,7 @@
 package com.dev.korelibrary.src.Components.CheakBox
 
-import android.graphics.drawable.shapes.Shape
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.scaleIn
@@ -20,9 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,10 +24,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.PathMeasure
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dev.korelibrary.src.Components.Themes.KoreTheme
 
@@ -41,9 +35,9 @@ import com.dev.korelibrary.src.Components.Themes.KoreTheme
 fun CheckBox(
     modifier: Modifier = Modifier,
     checked: Boolean,
-    onCheckChange : (Boolean) -> Unit ,
+    onCheckChange : (Boolean) -> Unit,
     enabled: Boolean = true,
-    shape: androidx.compose.ui.graphics.Shape = CheckBoxDefaults.defaultCheckBoxShape,
+    shape: Shape = CheckBoxDefaults.defaultCheckBoxShape,
     colors: CheckBoxColors = CheckBoxDefaults.defaultCheckBoxColors()
 ) {
 
@@ -158,7 +152,7 @@ object CheckBoxDefaults{
     val defaultCheckSize = 20.dp
 
 
-    val defaultCheckBoxShape : androidx.compose.ui.graphics.Shape
+    val defaultCheckBoxShape : Shape
         @Composable get() = KoreTheme.shapes.small
 
 
