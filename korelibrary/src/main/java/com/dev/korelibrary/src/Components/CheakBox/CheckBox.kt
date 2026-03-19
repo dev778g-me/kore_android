@@ -11,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -99,7 +100,7 @@ fun CheckBox(
             Canvas(
                 modifier = Modifier
                     .size(CheckBoxDefaults.defaultCheckSize)
-                    .padding(2.dp)
+                    .padding(CheckBoxDefaults.defaultCheckPaddingValues)
             ) {
                 val checkPath = Path().apply {
                     moveTo(size.width * 0.15f, size.height * 0.56f)
@@ -155,6 +156,10 @@ object CheckBoxDefaults{
     val defaultCheckBoxShape : Shape
         @Composable get() = KoreTheme.shapes.small
 
+
+    val defaultCheckPaddingValues : PaddingValues = PaddingValues(
+        4.dp
+    )
 
 
     @Composable
