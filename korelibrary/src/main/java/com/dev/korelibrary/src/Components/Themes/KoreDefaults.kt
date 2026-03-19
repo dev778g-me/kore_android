@@ -11,28 +11,27 @@ import io.jadu.nivi.presentation.utils.squircleShape.SquircleShape
 object KoreDefaults{
     val defaultLightColorScheme = KoreColors(
         // background and background variant
-        background = RadixColors.Gray.Light.step1,
-        onBackGround = RadixColors.Black.blackA12,
+        background = RadixColors.Gray.Light.step5,
+        onBackGround = RadixColors.Gray.Light.step12,
 
-        backGroundVariant = RadixColors.Gray.Light.step4,
-        onBackGroundVariant = RadixColors.Gray.Light.step12,
+        backGroundVariant = RadixColors.Gray.Light.step7,
+        onBackGroundVariant = RadixColors.Gray.Light.step10,
         accent = RadixColors.Blue.Light.step4,
         // disabled colors
-        disabled = RadixColors.Gray.Light.step3,
+        disabled = RadixColors.Gray.Light.step6,
         onDisabled = RadixColors.Gray.Light.step8,
 
         // primary colors
         primary = RadixColors.Blue.Light.step9,
         onPrimary = RadixColors.Blue.Light.step2,
 
-        primaryContainer = RadixColors.Blue.Light.step5,
+        primaryContainer = RadixColors.Blue.Light.step6,
         onPrimaryContainer = RadixColors.Blue.Light.step10,
 
         secondary = TailwindColors.Sky500,
         onSecondary = TailwindColors.Sky100,
         secondaryContainer = TailwindColors.Sky300,
         onSecondaryContainer = TailwindColors.Sky900,
-
 
 
         // success colors
@@ -42,17 +41,22 @@ object KoreDefaults{
         // error colors
         error = RadixColors.Red.Light.step9,
         onError = RadixColors.Red.Light.step3,
-        transParentColor = Color.Transparent
+        transParentColor = Color.Transparent,
+        
+        surface = RadixColors.Gray.Light.step4,
+        onSurface = RadixColors.Gray.Light.step11,
+        surfaceBright = RadixColors.Gray.Light.step2,
+        onSurfaceBright = RadixColors.Gray.Light.step12
     )
 
 
     val defaultDarkColorScheme = KoreColors(
         // background and background variant
         background = RadixColors.Gray.Dark.step1,
-        onBackGround = RadixColors.White.whiteA12,
+        onBackGround = RadixColors.Gray.Dark.step12,
 
-        backGroundVariant = RadixColors.Gray.Dark.step4,
-        onBackGroundVariant = RadixColors.Gray.Dark.step12,
+        backGroundVariant = RadixColors.Gray.Dark.step5,
+        onBackGroundVariant = RadixColors.Gray.Dark.step11,
         accent = RadixColors.Blue.Dark.step1,
         // disabled colors
         disabled = RadixColors.Gray.Dark.step3,
@@ -71,7 +75,6 @@ object KoreDefaults{
         onSecondaryContainer = TailwindColors.Blue700,
 
 
-
         // success colors
         success = RadixColors.Green.Dark.step9,
         onSuccess = RadixColors.Green.Dark.step12,
@@ -79,124 +82,128 @@ object KoreDefaults{
         // error colors
         error = RadixColors.Red.Dark.step9,
         onError = RadixColors.Red.Dark.step12,
-        transParentColor = Color.Transparent
+        transParentColor = Color.Transparent,
+        surface = RadixColors.Gray.Dark.step2,
+        onSurface = RadixColors.Gray.Dark.step11,
+
+        surfaceBright = RadixColors.Gray.Dark.step3,
+        onSurfaceBright = RadixColors.Gray.Dark.step12
     )
 
 
     val defaultTypography = KoreTypography(
-        // Display styles (largest)
         displayLarge = TextStyle(
             fontFamily = googleSansFlex,
             fontWeight = FontWeight.Normal,
             fontSize = 57.sp,
             lineHeight = 64.sp,
-            letterSpacing = (-0.25).sp   // M3: -0.25sp
+            letterSpacing = (-0.25).sp
         ),
         displayMedium = TextStyle(
             fontFamily = googleSansFlex,
             fontWeight = FontWeight.Normal,
             fontSize = 45.sp,
             lineHeight = 52.sp,
-            letterSpacing = 0.sp          // M3: 0sp ✓
+            letterSpacing = 0.sp
         ),
         displaySmall = TextStyle(
             fontFamily = googleSansFlex,
             fontWeight = FontWeight.Normal,
             fontSize = 36.sp,
             lineHeight = 44.sp,
-            letterSpacing = 0.sp          // M3: 0sp ✓
+            letterSpacing = 0.sp
         ),
 
-        // Headline styles
+
         headingLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal (not Bold)
+            fontWeight = FontWeight.Normal,
             fontSize = 32.sp,
             lineHeight = 40.sp,
-            letterSpacing = 0.sp              // M3: 0sp ✓
+            letterSpacing = 0.sp
         ),
         headingMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal (not Bold)
+            fontWeight = FontWeight.Normal,
             fontSize = 28.sp,
             lineHeight = 36.sp,
-            letterSpacing = 0.sp              // M3: 0sp ✓
+            letterSpacing = 0.sp
         ),
         headingSmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal (not Medium)
+            fontWeight = FontWeight.Normal,
             fontSize = 24.sp,
             lineHeight = 32.sp,
-            letterSpacing = 0.sp              // M3: 0sp ✓
+            letterSpacing = 0.sp
         ),
 
-        // Title styles
+
         titleLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal ✓
+            fontWeight = FontWeight.Normal,
             fontSize = 22.sp,
             lineHeight = 28.sp,
-            letterSpacing = 0.sp              // M3: 0sp ✓
+            letterSpacing = 0.sp
         ),
         titleMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,   // M3: Medium (not Normal)
+            fontWeight = FontWeight.Medium,
             fontSize = 16.sp,
             lineHeight = 24.sp,
-            letterSpacing = 0.15.sp           // M3: 0.15sp ✓
+            letterSpacing = 0.15.sp
         ),
         titleSmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,   // M3: Medium ✓
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.1.sp            // M3: 0.1sp ✓
+            letterSpacing = 0.1.sp
         ),
 
-        // Body styles
+
         bodyLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal ✓
+            fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
             lineHeight = 24.sp,
-            letterSpacing = 0.5.sp            // M3: 0.5sp (not 0.15sp)
+            letterSpacing = 0.5.sp
         ),
         bodyMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal ✓
+            fontWeight = FontWeight.Normal,
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.25.sp           // M3: 0.25sp ✓
+            letterSpacing = 0.25.sp
         ),
         bodySmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Normal,   // M3: Normal ✓
+            fontWeight = FontWeight.Normal,
             fontSize = 12.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.4.sp            // M3: 0.4sp ✓
+            letterSpacing = 0.4.sp
         ),
 
-        // Label styles
+
         labelLarge = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,   // M3: Medium (not SemiBold)
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.1.sp            // M3: 0.1sp ✓
+            letterSpacing = 0.1.sp
         ),
         labelMedium = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,   // M3: Medium (not SemiBold)
+            fontWeight = FontWeight.Medium,
             fontSize = 12.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.5.sp            // M3: 0.5sp ✓
+            letterSpacing = 0.5.sp
         ),
         labelSmall = TextStyle(
             fontFamily = googleSansFlex,
-            fontWeight = FontWeight.Medium,   // M3: Medium (not SemiBold)
+            fontWeight = FontWeight.Medium,
             fontSize = 11.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.5.sp            // M3: 0.5sp ✓
+            letterSpacing = 0.5.sp
         )
     )
 
