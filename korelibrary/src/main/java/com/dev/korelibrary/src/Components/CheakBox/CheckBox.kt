@@ -68,6 +68,7 @@ fun CheckBox(
 
 
     val toggleModifier = Modifier.toggleable(
+        enabled = enabled,
         value = checked,
         onValueChange = onCheckChange,
         role = Role.Checkbox,
