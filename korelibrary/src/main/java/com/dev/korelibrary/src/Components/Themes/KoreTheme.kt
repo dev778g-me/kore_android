@@ -138,7 +138,7 @@ fun KoreTheme(
         LocalKoreTypography provides defaultTypography,
         LocalTextStyle provides defaultTypography.titleSmall,
         LocalIndication provides rippleIndication,
-        LocalKoreShapes provides defaultSquircleShapes,
+        LocalKoreShapes provides defaultShapes,
         LocalKoreSizes provides defaultSizes,
         content = content
     )

@@ -105,7 +105,6 @@ fun CircularProgressBar(
 
 
     val coercedProgress = (progress /100f).coerceIn(0f..1f)
-    Logger.showLog("${thickness.value}")
     Canvas(
         modifier = modifier
             .size(size)

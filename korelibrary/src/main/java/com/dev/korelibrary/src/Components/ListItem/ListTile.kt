@@ -135,12 +135,12 @@ fun ListTile(
             it.layoutId == ListTileContents.Overline
         }?.measure(constraints = constraints.copy(minWidth = 0, maxWidth = maxWidth))
 
-        val overlineSpacing = if (overlinePlaceable !=null) textSpacing.roundToPx() else 0
-        val subtitleSpacing = if (subTitlePlaceable != null) textSpacing.roundToPx() else 0
+        val overlineTitleSpacing = if (overlinePlaceable !=null) textSpacing.roundToPx() else 0
+        val titleSubtitleSpacing = if (subTitlePlaceable != null) textSpacing.roundToPx() else 0
 
         val textColumnHeight =
-            (overlinePlaceable?.height ?: 0) + overlineSpacing +
-                    (titlePlaceable?.height ?: 0) + subtitleSpacing +
+            (overlinePlaceable?.height ?: 0) + overlineTitleSpacing +
+                    (titlePlaceable?.height ?: 0) + titleSubtitleSpacing +
                     (subTitlePlaceable?.height ?: 0)
 
         val maxHeight = maxOf(
@@ -179,14 +179,14 @@ fun ListTile(
                 y = currentY
             )
 
-            currentY += (overlinePlaceable?.height?:0) + overlineSpacing
+            currentY += (overlinePlaceable?.height?:0) + overlineTitleSpacing
             // title
             titlePlaceable?.place(
                 x = textStartX,
                 y = currentY
             )
 
-            currentY += (titlePlaceable?.height ?: 0) + subtitleSpacing
+            currentY += (titlePlaceable?.height ?: 0) + titleSubtitleSpacing
 
             subTitlePlaceable?.place(
                 x = textStartX,
@@ -194,7 +194,7 @@ fun ListTile(
             )
 
 
-            // end of weight 1f >>>>>>>>>>>>
+           //
             trailingPlaceable?.place(
                 x = (constraints.maxWidth - endPadding.roundToPx()) - trailingPlaceable.width,
                 y =  topPadding.roundToPx().plus(
@@ -218,12 +218,12 @@ object ListTileDefaults{
 
     @Composable
     fun defaultListTileColors(
-        containerColor: Color= KoreTheme.colorScheme.backGroundVariant,
+        containerColor: Color= KoreTheme.colorScheme.surface,
         titleContentColor: Color= KoreTheme.colorScheme.onBackGround,
         subTitleContentColor: Color= KoreTheme.colorScheme.onBackGroundVariant,
         overlineContentColor : Color= KoreTheme.colorScheme.onBackGroundVariant,
-        leadingContentColor : Color= KoreTheme.colorScheme.onBackGround,
-        trailingContentColor : Color= KoreTheme.colorScheme.onBackGround,
+        leadingContentColor : Color= KoreTheme.colorScheme.onSurface,
+        trailingContentColor : Color= KoreTheme.colorScheme.onSurface,
     ) = ListTileColors(
         containerColor = containerColor,
         titleContentColor = titleContentColor,
@@ -241,7 +241,7 @@ object ListTileDefaults{
 
    val defaultListItemPaddingValues : PaddingValues = PaddingValues(
        horizontal = 16.dp,
-       vertical = 8.dp
+       vertical = 12.dp
    )
 
    val defaultListTileShape  : Shape
